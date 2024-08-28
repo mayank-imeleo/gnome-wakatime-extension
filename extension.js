@@ -9,7 +9,7 @@ let panelButton = new St.Bin({
 });
 
 let panelButtonText = new St.Label({
-    text: `W:${getWakatimeValue()}`,
+    text: getPanelButtonText(getWakatimeValue()),
 });
 
 function disable() {
@@ -33,13 +33,17 @@ function getWakatimeValue() {
     return commandOutputBytes.toString();
 }
 
+function getPanelButtonText(wakaTimeValue) {
+    return `⏳${wakaTimeValue}`
+}
+
 function init() {
 
     panelButton.set_child(panelButtonText);
 }
 
 function updatePanelButtonText() {
-    panelButtonText.set_text(`W:${getWakatimeValue()}`);
+    panelButtonText.set_text(getPanelButtonText(getWakatimeValue()));
 }
 
 
