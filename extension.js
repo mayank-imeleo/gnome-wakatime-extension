@@ -2,6 +2,8 @@ const {St} = imports.gi;
 const Main = imports.ui.main;
 const GLib = imports.gi.GLib;
 
+const REFRESH_INTERVAL_SECONDS = 60 * 5
+
 let panelButton = new St.Bin({
     style: 'padding-top: 7px',
 });
@@ -17,7 +19,7 @@ function disable() {
 function enable() {
     Main.panel._rightBox.insert_child_at_index(panelButton, 0);
     updatePanelButtonText();
-    GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 5, () => {
+    GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, REFRESH_INTERVAL_SECONDS, () => {
         updatePanelButtonText();
         return true; // Continue the timeout
     });
